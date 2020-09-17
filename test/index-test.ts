@@ -24,10 +24,15 @@ tester.run("rule", rule, {
         },
         // multiple match
         {
-            text: `一⾒気づかないかもしれません。
+            text: `⼀⾒気づかないかもしれません。
 
 しかし、よく見ると、変な⽂字が⼊っていることがわかります。`,
             errors: [
+                {
+                    message: "康煕部首の文字 '⼀' が使われています.",
+                    line: 1,
+                    column: 1
+                },
                 {
                     message: "康煕部首の文字 '⾒' が使われています.",
                     line: 1,
