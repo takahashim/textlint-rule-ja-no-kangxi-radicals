@@ -16,7 +16,7 @@ tester.run("rule", rule, {
             text: "⾃分のことを言ったまでです。",
             errors: [
                 {
-                    message: "康煕部首の文字が使われています.",
+                    message: "康煕部首の文字 '⾃' が使われています.",
                     line: 1,
                     column: 1
                 }
@@ -24,19 +24,24 @@ tester.run("rule", rule, {
         },
         // multiple match
         {
-            text: `⼀⾒気づかないかもしれません。
+            text: `一⾒気づかないかもしれません。
 
 しかし、よく見ると、変な⽂字が⼊っていることがわかります。`,
             errors: [
                 {
-                    message: "康煕部首の文字が使われています.",
+                    message: "康煕部首の文字 '⾒' が使われています.",
                     line: 1,
-                    column: 1
+                    column: 2
                 },
                 {
-                    message: "康煕部首の文字が使われています.",
+                    message: "康煕部首の文字 '⽂' が使われています.",
                     line: 3,
                     column: 13
+                },
+                {
+                    message: "康煕部首の文字 '⼊' が使われています.",
+                    line: 3,
+                    column: 16
                 }
             ]
         },
