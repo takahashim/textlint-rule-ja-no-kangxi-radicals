@@ -8,10 +8,13 @@ export interface Options {
 const report: TextlintRuleModule<Options> = (context, options = {}) => {
     const {Syntax, RuleError, report, getSource} = context;
     const allows = options.allows || [];
+
+    // https://unicode.org/charts/nameslist/c_2F00.html
+    const KangxiRadicalsPat = /[\u2F00-\u2FD5]+/g
     return {
         [Syntax.Str](node) { // "Str" node
             const text = getSource(node); // Get text
-            const matches = /bugs/g.exec(text); // Found "bugs"
+            const matches = KangxiRadicalsPat.exec(text); // Found Kangxi Radicals
             if (!matches) {
                 return;
             }
@@ -19,9 +22,9 @@ const report: TextlintRuleModule<Options> = (context, options = {}) => {
             if (isIgnored) {
                 return;
             }
-            const indexOfBugs = matches.index;
-            const ruleError = new RuleError("Found bugs.", {
-                index: indexOfBugs // padding of index
+            const index = matches.index;
+            const ruleError = new RuleError("康煕部首の文字が使われています.", {
+                index: index // padding of index
             });
             report(node, ruleError);
         }

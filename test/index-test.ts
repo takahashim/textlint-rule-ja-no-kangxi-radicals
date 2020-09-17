@@ -7,39 +7,36 @@ tester.run("rule", rule, {
         // no problem
         "text",
         {
-            text: "It is bugs, but it should be ignored",
-            options: {
-                allows: ["it should be ignored"]
-            }
+            text: "自分のことを言ったまでです。"
         }
     ],
     invalid: [
         // single match
         {
-            text: "It is bugs.",
+            text: "⾃分のことを言ったまでです。",
             errors: [
                 {
-                    message: "Found bugs.",
+                    message: "康煕部首の文字が使われています.",
                     line: 1,
-                    column: 7
+                    column: 1
                 }
             ]
         },
         // multiple match
         {
-            text: `It has many bugs.
+            text: `⼀⾒気づかないかもしれません。
 
-One more bugs`,
+しかし、よく見ると、変な⽂字が⼊っていることがわかります。`,
             errors: [
                 {
-                    message: "Found bugs.",
+                    message: "康煕部首の文字が使われています.",
                     line: 1,
-                    column: 13
+                    column: 1
                 },
                 {
-                    message: "Found bugs.",
+                    message: "康煕部首の文字が使われています.",
                     line: 3,
-                    column: 10
+                    column: 13
                 }
             ]
         },
